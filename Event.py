@@ -27,7 +27,7 @@ class Event:
     def __init__(self, min: int, max: int, location: str, time: str, title: str, description: str):
         self.participants=[]
         #self.participants.append(Participant(emailOfCreator,nameOfCreator))
-
+        #test
         self.location= location
         self.time=time
         self.title=title
