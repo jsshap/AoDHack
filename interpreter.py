@@ -7,17 +7,20 @@ x =  '{ "min":5, "max": 10, "Location":"Hills Field", "Time":"2:30", "Descriptio
 
 def JSONtoEvent(j: json):
     event= Event(j["min"], j["max"], j["Location"], j["Time"], j["Title"], j["Description"])
+
+    persons=[]
     for participant in j["Participants"]:
-        event.participants.append(Participant(participant["Name"], participant["Email"]))
+        persons.append(Participant(participant["Name"], participant["Email"]))
+
+    event.addParticipants(persons)
     
     return event
 
-'''
+
 parse = json.loads(x)
 print(JSONtoEvent(parse))
 
 event=JSONtoEvent(parse)
-'''
 
 
 
