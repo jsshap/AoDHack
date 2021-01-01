@@ -28,8 +28,3 @@ event=JSONtoEvent(parse)
 import send
 
 send.sendEmail(JSONtoEvent(parse))
-
-
-
-
-
