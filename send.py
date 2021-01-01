@@ -1,4 +1,7 @@
 import smtplib
+import email
+from email.mime.multipart import MIMEMultipart
+#from email.MIMEText import MIMEText
 
 '''
 Event has:
@@ -17,7 +20,6 @@ password = 'amherst123'
 
 def sendEmail(event):    
     participants=event.participants
-    location=event.location
     
 
     receiver_emails = []
@@ -35,12 +37,13 @@ def sendEmail(event):
     \nHello, you have an update from Hangout!
     '''
 
-    email_body+=('\nYour event is on!\n\n' + "\nTitle: " + event.title + "\nDescription: " + event.description+ "\nLocation: " + event.location +"\n\nParticipants:\n")
+    email_body+=('\nYour event is on!\n\n' +"\nTime: "+event.time+ "\nTitle: " + event.title + "\nDescription: " + event.description+ "\nLocation: " + event.location +"\n\nParticipants:\n")
 
-    for n in names:
-        email_body+=("\n"+n)
+    for count, name in enumerate(names):
+        email_body+=("\n"+str(count)+". "+  name)
 
     email_body += ("\n\n\nSee you there!")
+    
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
