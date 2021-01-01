@@ -32,11 +32,12 @@ def sendEmail(event):
 
     # Email text
     email_body = '''Subject: Your Hangout Event\n
-    Hello, you have an update from Hangout!
+    \nHello, you have an update from Hangout!
 
 
-    
     '''
+
+    email_body+=('\nYour event is on!\n\n' + "\nTitle: " + event.title + "\nDescription: " + event.description+ "\n\n Participants:\n")
 
     for n in names:
         email_body+=(n+"\n")
