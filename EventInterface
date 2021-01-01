@@ -1,0 +1,17 @@
+
+Fields:
+
+list: Participant objects
+?????: time
+String: location
+????: type of event 
+
+methods:
+
+getParticipants()--> return list
+
+getTime() --> return time
+
+getLocation() --> return string
+
+getType() --> return

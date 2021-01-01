@@ -1,0 +1,11 @@
+
+
+fields:
+
+string: email
+string: name
+
+methods:
+
+getEmail()--> string
+getName()--> string
