@@ -54,5 +54,8 @@ class Event:
     
     def getTime(self):
         return self.time
+
+    def getLocation(self):
+        return self.location
     
     
