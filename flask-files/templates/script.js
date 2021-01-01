@@ -10,3 +10,19 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
+
+function createEvent(eventId, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
+  firebase.database().ref('Events/' + eventId).set({
+    "Time": name,
+    "Location": email,
+    "Title" : imageUrl,
+    "Description": evenDescription,
+    "min": eventMin,
+    "max": eventMax,
+  });
+}
+
+function addParticipants(eventId, ){
+
+  
+}
