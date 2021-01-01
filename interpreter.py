@@ -3,14 +3,16 @@ import json
 from Event import Event
 from Participant import Participant
 
-x =  '{ "min":5, "max": 10, "Location":"Hills Field", "Time":"2:30", "Description":"Practice", "Title":"Prac", "Participants":[{"Name":"Jake", "Email":"jsshap@gmail.com"}]}'
+import testEmail
+
+x =  '{ "min":5, "max": 10, "Location":"Hills Field", "Time":"2:30", "Description":"Practice", "Title":"Prac", "Participants":[{"Name":"Jake", "Email":"frisboysproject@gmail.com"},{"Name":"Jordy", "Email":"jordypg@gmail.com"}]}'
 
 def JSONtoEvent(j: json):
     event= Event(j["min"], j["max"], j["Location"], j["Time"], j["Title"], j["Description"])
 
     persons=[]
     for participant in j["Participants"]:
-        persons.append(Participant(participant["Name"], participant["Email"]))
+        persons.append(Participant(participant["Email"], participant["Name"]))
 
     event.addParticipants(persons)
     
@@ -23,6 +25,9 @@ print(JSONtoEvent(parse))
 event=JSONtoEvent(parse)
 
 
+import send
+
+send.sendEmail(JSONtoEvent(parse))
 
 
 
