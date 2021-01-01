@@ -3,7 +3,7 @@
 
 class Participant:
 
-    def _init__( self, email: str, name: str):
+    def __init__(self, email, name):
         self.email=email
         self.name=name
 
