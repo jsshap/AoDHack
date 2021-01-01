@@ -57,9 +57,7 @@ class Event:
         return self.location
 
     def __str__(self):
-        participantsString = ""
-        for people in self.participants:
-            participantsString += people.getName()
+        participantsString = ', '.join(people.getName() for people in self.participants)
 
         return("Event title: " + self.title +
               "\nMin participants: " + str(self.min) +
@@ -67,10 +65,3 @@ class Event:
               "\nLocation: " + self.location +
               "\nDescription: " + self.description +
               "\nParticipants: " + participantsString)
-
-newevent = Event(10, 20, "house", "2:30", "party", "absolute banger")
-jordy = Participant("jordypg@gmail.com", "jordy")
-jake = Participant("frisboysproject@gmail.com", "jake")
-list1 = [jordy, jake]
-newevent.addParticipants(list1)
-print(newevent)
