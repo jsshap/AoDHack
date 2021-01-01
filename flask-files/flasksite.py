@@ -18,7 +18,6 @@ def index():
 
         if len(fname) == 0:
             error = "Please supply a first name"
-        elif !minpart.isdigit():
 
 
     return render_template('index.html')
