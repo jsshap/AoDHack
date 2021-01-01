@@ -1,9 +1,10 @@
 <html>
   <head>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+{% block content %}
   <body>
     <div class="container">
-      <form action="action_page.php">
+      <form method="POST">
 
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name..">
@@ -11,20 +12,32 @@
         <label for="lname">Last Name</label>
         <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-        <label for="country">Country</label>
-        <select id="country" name="country">
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="firstname" placeholder="Your name..">
+
+        <label for="minpart">Minimum Participants</label>
+        <input type="text" id="minpart" name="minpart" placeholder='0'>
+
+        
+        <label for="maxpart">Maximum Participants</label>
+        <input type="text" id="maxpart" name="maxpart" placeholder='100'>
+
+
+        <label for="etype">Event Type</label>
+        <select id="etype" name="etype">
+          <option value="sports">Sports</option>
+          <option value="meals">Meals</option>
+          <option value="other">Other</option>
         </select>
 
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        <label for="edesc">Event Description</label>
+        <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px"></textarea>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Create Event!">
 
       </form>
     </div>
 
   </body>
+{% endblock %}
 </html>
