@@ -57,7 +57,7 @@ class Event:
         return self.location
 
     def __str__(self):
-        participantsString = ', '.join(people.getName() for people in self.participants)
+        participantsString = ', '.join(str(people) for people in self.participants)
 
         return("Event title: " + self.title +
               "\nMin participants: " + str(self.min) +

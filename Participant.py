@@ -14,7 +14,7 @@ class Participant:
         return self.name
 
     def __str__(self):
-        return ("Name: " + self.name + ", Email: " + self.email)
+        return (self.name + " (" + self.email + ")")
 
 npar = Participant('frisboysproject@gmail.com','Sung')
 print (npar)
