@@ -55,5 +55,22 @@ class Event:
 
     def getLocation(self):
         return self.location
-    
-    
+
+    def __str__(self):
+        participantsString = ""
+        for people in self.participants:
+            participantsString += people.getName()
+
+        return("Event title: " + self.title +
+              "\nMin participants: " + str(self.min) +
+              "\nMax participants: " + str(self.max) +
+              "\nLocation: " + self.location +
+              "\nDescription: " + self.description +
+              "\nParticipants: " + participantsString)
+
+newevent = Event(10, 20, "house", "2:30", "party", "absolute banger")
+jordy = Participant("jordypg@gmail.com", "jordy")
+jake = Participant("frisboysproject@gmail.com", "jake")
+list1 = [jordy, jake]
+newevent.addParticipants(list1)
+print(newevent)
