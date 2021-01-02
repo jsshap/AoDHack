@@ -14,13 +14,13 @@
     <!-- END Event Display Buttons -->
 
     <!-- Button to trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
       Add Event
     </button>
     <!-- END Button to trigger modal -->
 
     <!-- Button to trigger join event modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#joinEventModal">
+    <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#joinEventModal">
       Join An Event
     </button>
     <!-- END Button to trigger join event modal -->
@@ -40,40 +40,46 @@
 
               <label for="fname">First Name</label>
               <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
+              <br>
 
               <label for="lname">Last Name</label>
               <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+              <br>
 
               <label for="email">Email</label>
               <input type="text" id="email" name="email" placeholder="stevejobs@gmail.com" required>
+              <br>
 
               <label for="minpart">Minimum Participants</label>
               <input type="text" id="minipart" name="minipart" placeholder='0' required>
+              <br>
 
               
               <label for="maxpart">Maximum Participants</label>
               <input type="text" id="maxpart" name="maxpart" placeholder='100' required>
+              <br>
 
 
               <label for="ename">Event Title</label>
               <input type="text" id="ename" name="maxpart" placeholder='John Doe' required>
+              <br>
 
               <label for="etime">Event Time</label>
               <input type="text" id="etime" name="eventtime" placeholder="00:00:0000" required>
+              <br>
 
               <label for="elocation">Event Location</label>
               <input type="text" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
+              <br>
 
               <label for="edesc">Event Description</label>
               <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
-
-              <input type="button" value="Submit" onclick="go()">
+              <br>
 
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" value="Submit" onclick="go()" class="btn btn-secondary" data-dismiss="modal">Create Event</button>
           </div>
         </div>
       </div>
@@ -95,23 +101,24 @@
 
               <label for="fname">First Name</label>
               <input type="text" id="fnameadd" name="firstname" placeholder="Your first name.." required>
+              <br>
 
               <label for="lname">Last Name</label>
               <input type="text" id="lnameadd" name="lastname" placeholder="Your last name.." required>
+              <br>
 
               <label for="email">Email</label>
               <input type="text" id="emailadd" name="email" placeholder="stevejobs@gmail.com" required>
+              <br>
 
               <label for="eID">Event ID</label>
               <input type="text" id="eidadd" name="firstname" placeholder="The event ID" required>
-
-              <input type="button" value="Submit" onclick="joinEvent()">
+              <br>
 
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" value="Submit" onclick="joinEvent()" class="btn btn-secondary" data-dismiss="modal">Join</button>
           </div>
         </div>
       </div>
@@ -182,27 +189,26 @@ function apicall(d) {
 
     }
 
-    function getEventInfo() {
-      var eventsData;
-      if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-      }
+    // function getEventInfo() {
+    //   var eventsData;
+    //   if (!firebase.apps.length) {
+    //     firebase.initializeApp(config);
+    //   }
 
-      this.database = firebase.database();//not desired JSON data
+    //   this.database = firebase.database();//not desired JSON data
 
-      let userRef = this.database.ref('Events/');//not desired JSON data 
+    //   let userRef = this.database.ref('Events/');//not desired JSON data 
 
-      userRef.on("value", 
-      function(snapshot) {
-        eventsData=snapshot.val();
-      },
-      function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      }
-      );
-      return eventsData;
-    }
-
+    //   userRef.on("value", 
+    //   function(snapshot) {
+    //     eventsData=snapshot.val();
+    //   },
+    //   function (errorObject) {
+    //     console.log("The read failed: " + errorObject.code);
+    //   }
+    //   );
+    //   return eventsData;
+    // }
 
     function addParticipant(eventID,name,email) {
       let config = {
@@ -281,7 +287,6 @@ function apicall(d) {
 
 
     function displayEvents(){
-      console.log("displayEvents called");
       var eventsData;
       if (!firebase.apps.length) {
         firebase.initializeApp(config);
@@ -300,6 +305,7 @@ function apicall(d) {
             eventButton.innerHTML = 'Event ID: ' + event + ' || '+ eventsData[event].Title + ': ' + eventsData[event].Description +' || at ' +eventsData[event].Time;
             eventButton.className = "btn btn-primary btn-lg btn-block";
             eventButton.type = "button";
+            eventButton.id = eventsData[event].EventID;
             document.getElementById("eDisplayBtns").appendChild(eventButton);
           }
         },
