@@ -2,36 +2,56 @@ import firebase from "firebase/app";
 import "firebase/database";
 
 
-//TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries
-var firebaseConfig = {
-  apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
-  authDomain: "amherst-hangout.firebaseapp.com",
-  projectId: "amherst-hangout",
-  storageBucket: "amherst-hangout.appspot.com",
-  messagingSenderId: "396712529274",
-  appId: "1:396712529274:web:043222572d7137bc939ac3"
+let config = {
+    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+    authDomain: "amherst-hangout.firebaseapp.com",
+    projectId: "amherst-hangout",
+    databaseURL: "https://amherst-hangout.firebaseio.com",
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
-
-function createEvent(eventId, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
-  firebase.database().ref('Events/' + eventId).set({
-    EventID: eventId
-    Time: eventTime,
-    Location: eventLocation,
-    Title : eventTitle,
-    Description: eventDescription,
-    min: eventMin,
-    max: eventMax
-  });
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
 }
 
-function addParticipants(eventId, participantName, participantEmail){
-  var participantData = {
-    name: participantName,
-    email: participantEmail
+this.database = firebase.database();
+function addParticipant(eventID, name, email) {
+  let userRef = this.database.ref('Events/' + eventID);
+
+  // emptylist = [];
+  // //Create participants list
+  // userRef.child('Participants').set(emptylist)
+
+  // Update (push participant to list)
+  userRef.child('Participants').push({'Name': name, 'Email':email})
+
+  let part = userRef.once('Participants');
+
+  let min = userRef.once('min');
+
+  let doc = null
+  if length(part) == min {
+    // call python script
+
+    // fakefunction(userRef.once());
+
   }
-  var newParticipantKey = firebase.database().ref().child()
-  
+
+}
+
+function createEvent(eventID, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
+  let userRef = this.database.ref('Events/');
+
+  let emptylist = [];
+
+
+  userRef.child(eventID).set({
+    'EventID': eventID,
+      'Time': eventTime,
+      'Location': eventLocation,
+      'Title' : eventTitle,
+      'Description': eventDescription,
+      'min': eventMin,
+      'max': eventMax,
+      'Participants' : emptylist
+  });
+
 }
