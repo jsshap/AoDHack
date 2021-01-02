@@ -82,6 +82,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script>
+function apicall(d) {
+  fetch("https://hwzgmbb5mg.execute-api.us-east-1.amazonaws.com/test/check", {
+    method:"POST",
+    body: JSON.stringify({
+  "Description": d.Description,
+  "EventID": d.EventID,
+  "Location": d.Location,
+  "Participants": d.Participants,
+  "Time": d.Time,
+  "Title": d.Title,
+  "max": parseInt(d.max),
+  "min": parseInt(d.min)
+})
+  });
+}</script>
 
     <script>
     let config = {
@@ -175,18 +191,8 @@
 
         var requestData = snapshot.val(); 
 
-        console.log(requestData);
-        const userAction = async () => {
-        const response = await fetch('https://4okgi64o81.execute-api.us-east-1.amazonaws.com/default/emailChecker', {
-            method: 'POST',
-            body: requestData, // string or object
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-          const myJson = await response.json(); //extract JSON from the http response
-          // do something with myJson
-        }
+        apicall(requestData);
+        console.log(requestData.Participants);
 
 
       }
