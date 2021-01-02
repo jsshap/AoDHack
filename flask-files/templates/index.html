@@ -247,7 +247,7 @@ function apicall(d) {
             console.log(event);
             console.log(eventsData[event].Title);
             var eventButton = document.createElement('BUTTON');
-            eventButton.innerHTML = eventsData[event].Title;
+            eventButton.innerHTML = 'Event ID: ' + event + ' || '+ eventsData[event].Title + ': ' + eventsData[event].Description +' || at ' +eventsData[event].Time;
             document.getElementById("eDisplayBtns").appendChild(eventButton);
           }
         },
