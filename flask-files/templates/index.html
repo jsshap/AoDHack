@@ -1,3 +1,4 @@
+
 <html>
   <head>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
@@ -34,16 +35,130 @@
         <label for="edesc">Event Description</label>
         <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
 
-        <input type="button" value="Submit" onclick="process()">
+        <input type="button" value="Submit" onclick="go()">
 
       </form>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <script src="script.js"></script>
+    <script> 
+function createHangout(eventID, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
+  let config = {
+    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+    authDomain: "amherst-hangout.firebaseapp.com",
+    projectId: "amherst-hangout",
+    databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
+  };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+  }
+
+  this.database = firebase.database();
+  let userRef = this.database.ref('Events/');
+
+  let emptylist = [];
+
+
+  userRef.child(eventID).set({
+    'EventID': eventID,
+      'Time': eventTime,
+      'Location': eventLocation,
+      'Title' : eventTitle,
+      'Description': eventDescription,
+      'min': eventMin,
+      'max': eventMax,
+      'Participants' : emptylist
+  });
+
+  console.log('this method finished.')
+
+}
+
+
+
+</script>
+
+
+    <script> 
+function go2(eventID,name,email) {
+  let config = {
+    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+    authDomain: "amherst-hangout.firebaseapp.com",
+    projectId: "amherst-hangout",
+    databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
+  };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+  }
+
+  this.database = firebase.database();
+
+
+  let userRef = this.database.ref('Events/' + eventID);
+
+  // emptylist = [];
+  // //Create participants list
+  // userRef.child('Participants').set(emptylist)
+
+  // Update (push participant to list)
+  userRef.child('Participants').push({'Name': name, 'Email':email})
+
+}
+
+</script>
+
+<script>
+
+function getEvents() {
+  let config = {
+    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+    authDomain: "amherst-hangout.firebaseapp.com",
+    projectId: "amherst-hangout",
+    databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
+  };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+  }
+
+  this.database = firebase.database();
+
+  let userRef = this.database.ref('Events/');
+
+  userRef.on("value", function(snapshot) {
+  console.log(snapshot.val()); }
+  , function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+  });
+
+  
+}</script>
     <script>
-    function process(){
+      function addParticipant(eventID,name,email) {
+        let config = {
+          apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+          authDomain: "amherst-hangout.firebaseapp.com",
+          projectId: "amherst-hangout",
+          databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
+        };
+        if (!firebase.apps.length) {
+          firebase.initializeApp(config);
+        }
+
+        this.database = firebase.database();
+
+
+        let userRef = this.database.ref('Events/' + eventID);
+
+        // emptylist = [];
+        // //Create participants list
+        // userRef.child('Participants').set(emptylist)
+
+        // Update (push participant to list)
+        userRef.child('Participants').push({'Name': name, 'Email':email})
+
+      }
+    </script>
+    <script>
+
+    function go(){
       event.preventDefault();
       var fname=document.getElementById("fname").value.toString();
       var lname=document.getElementById("lname").value.toString();
@@ -55,9 +170,20 @@
       var elocation=document.getElementById("elocation").value.toString();
       var edesc=document.getElementById("edesc").value.toString();
       document.getElementById("newEventInfo").reset();
-      var numEvents = Math.random()*100;//EDIT THIS SHIT LATER!!
-      //createEvent(numEvents, ename, etime, elocation, minipart, minimax, edesc);
+      var numEvents = Math.round(Math.random()*4206969);//EDIT THIS SHIT LATER!!
+      createHangout(numEvents, ename, etime, elocation, minipart, maxpart, edesc);
+      console.log(numEvents);
+      addParticipant(numEvents,fname+' '+lname,email);
     }
+    //document.onclick=function(){}
+  </script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="script.js"></script>
+    <script>
+
+
     //document.onclick=function(){}
   </script>
   </body>
