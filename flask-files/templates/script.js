@@ -13,16 +13,17 @@ var database = firebase.database();
 
 function createEvent(eventId, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
   firebase.database().ref('Events/' + eventId).set({
-    "Time": name,
-    "Location": email,
-    "Title" : imageUrl,
-    "Description": evenDescription,
+    "Time": eventTime,
+    "Location": eventLocation,
+    "Title" : eventTitle,
+    "Description": eventDescription,
     "min": eventMin,
     "max": eventMax,
   });
 }
 
-function addParticipants(eventId, ){
+function addParticipants(eventId, participantsToAdd){
+  firebase.database().red('Events/' + eventID).set()
 
-  
+
 }
