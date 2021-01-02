@@ -67,96 +67,69 @@
       </div>
     </div>
     <script> 
-function createHangout(eventID, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
-  let config = {
-    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
-    authDomain: "amherst-hangout.firebaseapp.com",
-    projectId: "amherst-hangout",
-    databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
-  };
-  if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-  }
+    function createHangout(eventID, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
+      let config = {
+        apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+        authDomain: "amherst-hangout.firebaseapp.com",
+        projectId: "amherst-hangout",
+        databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
+      };
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+      }
 
-  this.database = firebase.database();
-  let userRef = this.database.ref('Events/');
+      this.database = firebase.database();
+      let userRef = this.database.ref('Events/');
 
-  let emptylist = [];
-
-
-  userRef.child(eventID).set({
-    'EventID': eventID,
-      'Time': eventTime,
-      'Location': eventLocation,
-      'Title' : eventTitle,
-      'Description': eventDescription,
-      'min': eventMin,
-      'max': eventMax,
-      'Participants' : emptylist
-  });
-
-  console.log('this method finished.')
-
-}
+      let emptylist = [];
 
 
+      userRef.child(eventID).set({
+        'EventID': eventID,
+          'Time': eventTime,
+          'Location': eventLocation,
+          'Title' : eventTitle,
+          'Description': eventDescription,
+          'min': eventMin,
+          'max': eventMax,
+          'Participants' : emptylist
+      });
 
-</script>
+      console.log('this method finished.')
 
-
-    <script> 
-function go2(eventID,name,email) {
-  let config = {
-    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
-    authDomain: "amherst-hangout.firebaseapp.com",
-    projectId: "amherst-hangout",
-    databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
-  };
-  if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-  }
-
-  this.database = firebase.database();
+    }
 
 
-  let userRef = this.database.ref('Events/' + eventID);
 
-  // emptylist = [];
-  // //Create participants list
-  // userRef.child('Participants').set(emptylist)
+    </script>
 
-  // Update (push participant to list)
-  userRef.child('Participants').push({'Name': name, 'Email':email})
 
-}
 
-</script>
+    <script>
 
-<script>
+    function getEvents() {
+      let config = {
+        apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
+        authDomain: "amherst-hangout.firebaseapp.com",
+        projectId: "amherst-hangout",
+        databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
+      };
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+      }
 
-function getEvents() {
-  let config = {
-    apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
-    authDomain: "amherst-hangout.firebaseapp.com",
-    projectId: "amherst-hangout",
-    databaseURL: "https://amherst-hangout-default-rtdb.firebaseio.com/",
-  };
-  if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-  }
+      this.database = firebase.database();
 
-  this.database = firebase.database();
+      let userRef = this.database.ref('Events/');
 
-  let userRef = this.database.ref('Events/');
+      userRef.on("value", function(snapshot) {
+      console.log(snapshot.val()); }
+      , function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+      });
 
-  userRef.on("value", function(snapshot) {
-  console.log(snapshot.val()); }
-  , function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-  });
-
-  
-}</script>
+      
+    }</script>
 
     <script>
       function addParticipant(eventID,name,email) {
@@ -182,15 +155,38 @@ function getEvents() {
         // Update (push participant to list)
         userRef.child('Participants').push({'Name': name, 'Email':email})
 
-        let part = userRef.once('Participants');
+       userRef.on("value", function(snapshot) {
 
-        let min = userRef.once('min');
 
-        let doc = null;
 
-        if (length(part) == min) {
-          //emailParticipants();
+      var requestData = snapshot.val(); 
+
+      console.log(requestData);
+      const userAction = async () => {
+      const response = await fetch('https://4okgi64o81.execute-api.us-east-1.amazonaws.com/default/emailChecker', {
+        method: 'POST',
+        body: requestData, // string or object
+        headers: {
+          'Content-Type': 'application/json'
         }
+      });
+      const myJson = await response.json(); //extract JSON from the http response
+      // do something with myJson
+    }
+
+
+    }
+
+
+
+      , function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+      });
+        var requestData = {
+
+        }
+    
+
       }
     </script>
     <script>
