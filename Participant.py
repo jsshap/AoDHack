@@ -15,6 +15,3 @@ class Participant:
 
     def __str__(self):
         return (self.name + " (" + self.email + ")")
-
-npar = Participant('frisboysproject@gmail.com','Sung')
-print (npar)

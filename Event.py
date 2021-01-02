@@ -40,8 +40,6 @@ class Event:
 
         self.description= description
 
-
-    #TODO idk why the for loop doesn't work but the other one does
     def addParticipants(self, personList):
         for person in personList:
             self.participants.append(person)
