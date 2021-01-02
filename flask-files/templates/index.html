@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <body>
     <!-- Event Display Buttons -->
     <div id="eDisplayBtns" class="btn-block" role="group">
-		  <!--button type="button" class="btn btn-primary btn-lg btn-block" >Event1</button>
-		  <button type="button" class="btn btn-primary btn-lg btn-block">event2</button>
-		  <button type="button" class="btn btn-primary btn-lg btn-block">event3</button-->
-	  </div>
+      <!--button type="button" class="btn btn-primary btn-lg btn-block" >Event1</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block">event2</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block">event3</button-->
+    </div>
     <!-- END Event Display Buttons -->
 
     <!-- Button to trigger modal -->
@@ -230,13 +230,28 @@ function apicall(d) {
 
     function displayEvents(){
       console.log("displayEvents called");
-      eventsData = getEventInfo();
-      console.log(eventsData);
-      for (event in eventsData){
-        var eventButton = document.createElement('BUTTON');
-        eventButton.innerHTML = eventsData[event].Title;
-        document.getElementById("eDisplayBtns").appendChild(eventButton);
+      var eventsData;
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
       }
+
+      this.database = firebase.database();//not desired JSON data
+
+      let userRef = this.database.ref('Events/');//not desired JSON data 
+
+      userRef.on("value", 
+        function(snapshot) {
+          eventsData=snapshot.val();
+          for (event in eventsData){
+            var eventButton = document.createElement('BUTTON');
+            eventButton.innerHTML = eventsData[event].Title;
+            document.getElementById("eDisplayBtns").appendChild(eventButton);
+          }
+        },
+        function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        }
+      );
     }
 
     function displayHomePage(){
