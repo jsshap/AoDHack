@@ -211,7 +211,7 @@ function apicall(d) {
 
 
     function go(){
-      event.preventDefault();
+      //event.preventDefault();
       var fname=document.getElementById("fname").value.toString();
       var lname=document.getElementById("lname").value.toString();
       var email=document.getElementById("email").value.toString();
@@ -244,6 +244,8 @@ function apicall(d) {
           document.getElementById("eDisplayBtns").innerHTML = "";
           eventsData=snapshot.val();
           for (event in eventsData){
+            console.log(event);
+            console.log(eventsData[event].Title);
             var eventButton = document.createElement('BUTTON');
             eventButton.innerHTML = eventsData[event].Title;
             document.getElementById("eDisplayBtns").appendChild(eventButton);
