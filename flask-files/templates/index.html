@@ -1,45 +1,64 @@
 <html>
   <head>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-{% block content %}
   <body>
     <div class="container">
-      <form method="POST">
+      <form id="newEventInfo" onsubmit="processNewEvent()" style="text-align: center; position: relative">
 
         <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
 
         <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
 
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Your name..">
+        <input type="text" id="email" name="email" placeholder="stevejobs@gmail.com" required>
 
         <label for="minpart">Minimum Participants</label>
-        <input type="text" id="minpart" name="minpart" placeholder='0'>
+        <input type="text" id="minipart" name="minipart" placeholder='0' required>
 
         
         <label for="maxpart">Maximum Participants</label>
-        <input type="text" id="maxpart" name="maxpart" placeholder='100'>
+        <input type="text" id="maxpart" name="maxpart" placeholder='100' required>
 
 
-        <label for="etype">Event Type</label>
-        <select id="etype" name="etype">
-          <option value="sports">Sports</option>
-          <option value="meals">Meals</option>
-          <option value="other">Other</option>
-        </select>
+        <label for="ename">Event Name</label>
+        <input type="text" id="ename" name="maxpart" placeholder='John Doe' required>
+
+        <label for="etime">Event Time</label>
+        <input type="text" id="etime" name="eventtime" placeholder="00:00:0000" required>
+
+        <label for="elocation">Event Location</label>
+        <input type="text" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
 
         <label for="edesc">Event Description</label>
-        <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px"></textarea>
+        <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
 
-        <input type="submit" value="Create Event!">
+        <input type="button" value="Submit" onclick="process()">
 
       </form>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="script.js"></script>
+    <script>
+    function process(){
+      event.preventDefault();
+      var fname=document.getElementById("fname").value.toString();
+      var lname=document.getElementById("lname").value.toString();
+      var email=document.getElementById("email").value.toString();
+      var minipart=document.getElementById("minipart").value.toString();
+      var maxpart=document.getElementById("maxpart").value.toString();
+      var ename=document.getElementById("ename").value.toString();
+      var etime=document.getElementById("etime").value.toString();
+      var elocation=document.getElementById("elocation").value.toString();
+      var edesc=document.getElementById("edesc").value.toString();
+      document.getElementById("newEventInfo").reset();
+      var numEvents = Math.random()*100;//EDIT THIS SHIT LATER!!
+      //createEvent(numEvents, ename, etime, elocation, minipart, minimax, edesc);
+    }
+    //document.onclick=function(){}
+  </script>
   </body>
-{% endblock %}
 </html>
