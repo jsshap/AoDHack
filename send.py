@@ -14,11 +14,12 @@ String:type:sports/meal/something
 Description (can be null): string
 
 '''
-sender_email = 'frisboysproject@gmail.com'
-password = 'amherst123'
 
 
-def sendEmail(event):    
+
+def sendEmail(event):   
+    sender_email = 'frisboysproject@gmail.com'
+    password = 'amherst123' 
     participants=event.participants
     
 

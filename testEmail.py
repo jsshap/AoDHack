@@ -1,7 +1,6 @@
 from send import sendEmail
 import send
-from Event import Event
-from Participant import Participant
+from classes import Participant, Event
 
 testEvent= Event(0, 100, "Pratt Field", '12:00', 'Tossing with the boiz', 'Wanna Toss?')
 testEvent.participants.append(Participant('frisboysproject@gmail.com','Sung'))
