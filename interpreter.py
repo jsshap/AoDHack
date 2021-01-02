@@ -13,7 +13,7 @@ def JSONtoEvent(j: json):
 
     persons=[]
     for participant in j["Participants"]:
-        persons.append(Participant(participant["Email"], participant["Name"]))
+        persons.append(Participant(participant[0]["Email"], participant[0]["Name"]))
 
     event.addParticipants(persons)
     

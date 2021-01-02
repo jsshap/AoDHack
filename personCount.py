@@ -1,10 +1,14 @@
 # takes a JSON file and returns values based on the number of people
 import json
+from send import sendEmail
+from interpreter import JSONtoEvent
+
 
 
 def greaterThanMin(j: json):
     jParsed = json.loads(j)
     if len(jParsed["Participants"]) >= int(jParsed["min"]):
+        sendEmail(JSONtoEvent(j))
         return True
     else:
         return False
