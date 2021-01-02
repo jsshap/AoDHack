@@ -1,3 +1,7 @@
+import firebase from "firebase/app";
+import "firebase/database";
+
+
 //TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries
 var firebaseConfig = {
   apiKey: "AIzaSyC8iaO8kb95S5mnUa2WLSCrCO-2Vq7RWiE",
@@ -13,17 +17,21 @@ var database = firebase.database();
 
 function createEvent(eventId, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
   firebase.database().ref('Events/' + eventId).set({
-    "Time": eventTime,
-    "Location": eventLocation,
-    "Title" : eventTitle,
-    "Description": eventDescription,
-    "min": eventMin,
-    "max": eventMax,
+    EventID: eventId
+    Time: eventTime,
+    Location: eventLocation,
+    Title : eventTitle,
+    Description: eventDescription,
+    min: eventMin,
+    max: eventMax
   });
 }
 
-function addParticipants(eventId, participantsToAdd){
-  firebase.database().red('Events/' + eventID).set()
-
-
+function addParticipants(eventId, participantName, participantEmail){
+  var participantData = {
+    name: participantName,
+    email: participantEmail
+  }
+  var newParticipantKey = firebase.database().ref().child()
+  
 }
