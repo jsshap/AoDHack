@@ -5,46 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <body>
-    <div class=" btn-block" role="group" aria-label="...">
-		  <button type="button" class="btn btn-primary btn-lg" >Event1</button>
-		  <button type="button" class="btn btn-primary btn-lg">event2</button>
-		  <button type="button" class="btn btn-primary btn-lg">event3</button>
+    <div class="btn-block" role="group" aria-label="...">
+		  <button type="button" class="btn btn-primary btn-lg btn-block" >Event1</button>
+		  <button type="button" class="btn btn-primary btn-lg btn-block">event2</button>
+		  <button type="button" class="btn btn-primary btn-lg btn-block">event3</button>
 	  </div>
-    <div class="container">
-      <form id="newEventInfo" onsubmit="processNewEvent()" style="text-align: center; position: relative">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Add Event
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="newEventInfo" onsubmit="processNewEvent()" style="text-align: center; position: relative">
 
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
 
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
 
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="stevejobs@gmail.com" required>
+              <label for="email">Email</label>
+              <input type="text" id="email" name="email" placeholder="stevejobs@gmail.com" required>
 
-        <label for="minpart">Minimum Participants</label>
-        <input type="text" id="minipart" name="minipart" placeholder='0' required>
+              <label for="minpart">Minimum Participants</label>
+              <input type="text" id="minipart" name="minipart" placeholder='0' required>
 
-        
-        <label for="maxpart">Maximum Participants</label>
-        <input type="text" id="maxpart" name="maxpart" placeholder='100' required>
+              
+              <label for="maxpart">Maximum Participants</label>
+              <input type="text" id="maxpart" name="maxpart" placeholder='100' required>
 
 
-        <label for="ename">Event Name</label>
-        <input type="text" id="ename" name="maxpart" placeholder='John Doe' required>
+              <label for="ename">Event Name</label>
+              <input type="text" id="ename" name="maxpart" placeholder='John Doe' required>
 
-        <label for="etime">Event Time</label>
-        <input type="text" id="etime" name="eventtime" placeholder="00:00:0000" required>
+              <label for="etime">Event Time</label>
+              <input type="text" id="etime" name="eventtime" placeholder="00:00:0000" required>
 
-        <label for="elocation">Event Location</label>
-        <input type="text" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
+              <label for="elocation">Event Location</label>
+              <input type="text" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
 
-        <label for="edesc">Event Description</label>
-        <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
+              <label for="edesc">Event Description</label>
+              <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
 
-        <input type="button" value="Submit" onclick="go()">
+              <input type="button" value="Submit" onclick="go()">
 
-      </form>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
     <script> 
 function createHangout(eventID, eventTitle, eventTime, eventLocation, eventMin, eventMax, eventDescription) {
