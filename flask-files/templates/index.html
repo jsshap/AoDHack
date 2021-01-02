@@ -241,6 +241,7 @@ function apicall(d) {
 
       userRef.on("value", 
         function(snapshot) {
+          document.getElementById("eDisplayBtns").innerHTML = "";
           eventsData=snapshot.val();
           for (event in eventsData){
             var eventButton = document.createElement('BUTTON');
