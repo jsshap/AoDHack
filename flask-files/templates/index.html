@@ -38,8 +38,12 @@
           <div class="modal-body">
             <form id="newEventInfo" onsubmit="go()" style="text-align: center; position: relative">
 
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">First Name</span>
+                </div>
+                <input type="text" id="fname" class="form-control" name="firstname" placeholder="Your first name.." aria-label="Username" aria-describedby="basic-addon1" required>
+              </div>
               <br>
 
               <label for="lname">Last Name</label>
@@ -59,9 +63,12 @@
               <input type="text" id="maxpart" name="maxpart" placeholder='100' required>
               <br>
 
-
-              <label for="ename">Event Title</label>
-              <input type="text" id="ename" name="maxpart" placeholder='John Doe' required>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Event Title</span>
+                </div>
+                <input type="text" id="ename" name="maxpart" placeholder='John Doe'class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
+              </div>
               <br>
 
               <label for="etime">Event Time</label>
@@ -91,7 +98,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Start New Event!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Join An Event!</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -274,6 +281,7 @@ function apicall(d) {
       createHangout(numEvents, ename, etime, elocation, minipart, maxpart, edesc);
       console.log(numEvents);
       addParticipant(numEvents,fname+' '+lname,email);
+      alert("Your event has been submitted! You will receive an email when enough signups have occured.");
     }
 
 
@@ -283,6 +291,7 @@ function apicall(d) {
       var lname=document.getElementById("lnameadd").value.toString();
       var email=document.getElementById("emailadd").value.toString();
       addParticipant(eid,fname+' '+lname,email);
+      alert("You've been added to the event! You will receive an email when enough signups have occured.");
     }
 
 
