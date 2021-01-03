@@ -7,9 +7,6 @@
   <body>
     <!-- Event Display Buttons -->
     <div id="eDisplayBtns" class="btn-block" role="group">
-      <!--button type="button" class="btn btn-primary btn-lg btn-block" >Event1</button>
-      <button type="button" class="btn btn-primary btn-lg btn-block">event2</button>
-      <button type="button" class="btn btn-primary btn-lg btn-block">event3</button-->
     </div>
     <!-- END Event Display Buttons -->
 
@@ -38,51 +35,69 @@
           <div class="modal-body">
             <form id="newEventInfo" onsubmit="go()" style="text-align: center; position: relative">
 
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">First Name</span>
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">First Name</span>
+                  </div>
+                  <input type="text" id="fname" class="form-control" name="firstname" placeholder="Your first name.." aria-label="Username" aria-describedby="basic-addon1" required>
                 </div>
-                <input type="text" id="fname" class="form-control" name="firstname" placeholder="Your first name.." aria-label="Username" aria-describedby="basic-addon1" required>
-              </div>
-              <br>
 
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
-              <br>
-
-              <label for="email">Email</label>
-              <input type="text" id="email" name="email" placeholder="stevejobs@gmail.com" required>
-              <br>
-
-              <label for="minpart">Minimum Participants</label>
-              <input type="text" id="minipart" name="minipart" placeholder='0' required>
-              <br>
-
-              
-              <label for="maxpart">Maximum Participants</label>
-              <input type="text" id="maxpart" name="maxpart" placeholder='100' required>
-              <br>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Event Title</span>
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Last Name</span>
+                  </div>
+                  <input type="text" aria-label="Username" aria-describedby="basic-addon1" id="lname" name="lastname" placeholder="Your last name.." required>
                 </div>
-                <input type="text" id="ename" name="maxpart" placeholder='John Doe'class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
-              </div>
-              <br>
 
-              <label for="etime">Event Time</label>
-              <input type="text" id="etime" name="eventtime" placeholder="00:00:0000" required>
-              <br>
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Email</span>
+                  </div>
+                  <input type="text" aria-label="Username" aria-describedby="basic-addon1" id="email" name="email" placeholder="stevejobs@gmail.com" required>
+                </div>
 
-              <label for="elocation">Event Location</label>
-              <input type="text" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
-              <br>
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Minimum Participants</span>
+                  </div>
+                  <input type="text" aria-label="Username" aria-describedby="basic-addon1" id="minipart" name="minipart" placeholder='0' required>
+                </div>
 
-              <label for="edesc">Event Description</label>
-              <textarea id="edesc" name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
-              <br>
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Maximum Participants</span>
+                  </div>
+                  <input type="text" aria-label="Username" aria-describedby="basic-addon1" id="maxpart" name="maxpart" placeholder='100' required>
+                </div>
 
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Event Title</span>
+                  </div>
+                  <input type="text" id="ename" name="maxpart" placeholder='John Doe'class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Event Time</span>
+                  </div>
+                  <input type="text" aria-label="Username" aria-describedby="basic-addon1" id="etime" name="eventtime" placeholder="00:00:0000" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Event Location</span>
+                  </div>
+                  <input type="text" aria-label="Username" aria-describedby="basic-addon1" id="elocation" name="eventlocation" placeholder="Buckingham Palace" required>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Event Description</span>
+                  </div>
+                  <textarea class="form-control" aria-label="With textarea"name="edesc" placeholder="Write something.." style="height:200px" required></textarea>
+                </div>
             </form>
           </div>
           <div class="modal-footer">
